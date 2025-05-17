@@ -1,0 +1,99 @@
+using Microsoft.Ajax.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace Myproject
+{
+
+    public partial class Production : System.Web.UI.Page
+    {
+
+        protected void Page_Load(object sender, EventArgs e)
+        {
+
+            if (IsPostBack == false)
+            {
+                Txtname.Text = "def name";
+                Txtpassword.Text = "def password";
+                ddlage.SelectedValue = "30";
+                populatecountry();
+                populatestate();
+                popularcity();
+            }
+        }
+
+        private void populatecountry()
+        {
+            ddlcountry.Items.Add("INDIA");
+            ddlcountry.Items.Add("USA");
+            ddlcountry.Items.Add("UK");
+        }
+
+        private void populatestate()
+
+        {
+            ddlstate.Items.Add("DE");
+            ddlstate.Items.Add("TS");
+            ddlstate.Items.Add("MN");
+            ddlstate.Items.Add("TX");
+            ddlstate.Items.Add("AZ");
+            ddlstate.Items.Add("CHI");
+        }
+
+        private void popularcity()
+        {
+            ddlcity.Items.Add("KTGM");
+            ddlcity.Items.Add("HYD");
+            ddlcity.Items.Add ("BCM");
+        }
+           
+        
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Write("my first button click event");
+            Response.Write("name you entered" + Txtname.Text);
+            Response.Write("password you entered" + Txtpassword.Text);
+            Response.Write("age you entered" + ddlage.SelectedValue);
+
+        }
+
+        protected void ddlcountry_SelectedIndexChanged1(object sender, EventArgs e)
+        {
+            ddlstate.Items.Clear();
+            if (ddlcountry.SelectedItem.Text == "INDIA")
+            {
+                ddlstate.Items.Add("DE");
+                ddlstate.Items.Add("TS");
+            }
+            else if (ddlcountry.SelectedItem.Text == "USA")
+            {
+                ddlstate.Items.Add("MN");
+                ddlstate.Items.Add("TX");
+            }
+            else if (ddlcountry.SelectedItem.Text == "UK")
+            {
+                ddlstate.Items.Add("AZ");
+                ddlstate.Items.Add("CHI");
+            }
+        }
+
+        protected void ddlstate_SelectedIndexChanged(object sender, EventArgs e)
+           
+        {
+            ddlcity.Items.Clear();
+            if(ddlstate.SelectedValue == "MN")
+            ddlcity.Items.Add("HYD");
+
+            else if(ddlstate.SelectedValue =="TX")
+                ddlcity.Items.Add("KTDM");
+
+            else if(ddlstate.SelectedValue =="AZ")
+                ddlcity.Items.Add("BCM");
+             
+        }
+    }
+}
