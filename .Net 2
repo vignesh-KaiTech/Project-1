@@ -1,0 +1,112 @@
+using Microsoft.Ajax.Utilities;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.UI;
+using System.Web.UI.WebControls;
+
+namespace WebApplication2
+{
+	public partial class WebForm1 : System.Web.UI.Page
+	{
+		protected void Page_Load(object sender, EventArgs e)
+		{
+            if(IsPostBack == false)
+            {
+                Textname.Text = "Enter your name";
+                Textpassword.Text = "Enter your password";
+                DdlAGE.SelectedValue = "18";
+                DdlGENDER.SelectedValue = "MALE";
+                DdlCOUNTRY.SelectedValue = "INDIA";
+                DdlSTATE.SelectedValue = "ANDHRAPRADESH";
+                PopulateAGE();
+                PopulateCOUNTRY();
+                PopulateGENDER();
+                PopulateSTATE();
+            }
+           
+        }
+        protected void Button1_Click(object sender, EventArgs e)
+        {
+            Response.Write("name you entered " + Textname.Text);
+            Response.Write("password you entered " + Textpassword.Text);
+            Response.Write("age you entered " + DdlAGE.SelectedValue);
+            Response.Write("Gender you entered " + DdlGENDER.SelectedValue);
+            Response.Write("Country you entered " + DdlCOUNTRY.SelectedValue);
+            Response.Write("state you entered " + DdlSTATE.SelectedValue);
+            
+        }
+        protected void DdlSTATE_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            DdlSTATE.Items.Add("ANDHRAPRADESH");
+            DdlSTATE.Items.Add("TAMIL NADU");
+            DdlSTATE.Items.Add("MINNEAPOLIS");
+            DdlSTATE.Items.Add("LONDON");
+        }
+         private void PopulateAGE()
+        {
+            DdlAGE.Items.Add("18");
+            DdlAGE.Items.Add("20");
+            DdlAGE.Items.Add("22");
+            DdlAGE.Items.Add("24"); 
+        }
+
+        private void PopulateGENDER()
+        {
+            DdlGENDER.Items.Add("MALE");
+            DdlGENDER.Items.Add("FEMALE");
+        }
+
+        private void PopulateCOUNTRY()
+        {
+            DdlCOUNTRY.Items.Add("INDIA");
+            DdlCOUNTRY.Items.Add("USA");
+            DdlCOUNTRY.Items.Add("UK");
+        }
+        private void PopulateSTATE()
+        {
+            DdlSTATE.Items.Add("TELANGANA");
+            DdlSTATE.Items.Add("BENGALURU");
+            DdlSTATE.Items.Add("MINNEAPOLIS");
+            DdlSTATE.Items.Add("NEWYORK");
+            DdlSTATE.Items.Add("LONDON");
+            DdlSTATE.Items.Add("BRIGHTON");
+        }
+        protected void DdlCOUNTRY_SelectedIndexChanged(object sender, EventArgs e)
+        {
+          
+          
+                DdlSTATE.Items.Clear();
+                if (DdlCOUNTRY.SelectedValue == "INDIA")
+                {
+                    DdlSTATE.Items.Add("ANDHRA PRADESH");
+                    DdlSTATE.Items.Add("TAMIL NADU");
+                }
+               
+                else if (DdlCOUNTRY.SelectedValue == "USA")
+                {
+                    DdlSTATE.Items.Add("MINNEAPOLIS");
+                    DdlSTATE.Items.Add("NEWYORK");
+                }
+                else if (DdlCOUNTRY.SelectedValue == "UK")
+                {
+                    DdlSTATE.Items.Add("LONDON");
+                    DdlSTATE.Items.Add("BRIGHTON");
+                }
+            }
+
+        protected void DdlAGE_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        protected void DdlGENDER_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        
+    }
+}
+
